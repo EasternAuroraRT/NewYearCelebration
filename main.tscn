@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://da1wcj0rvoir"]
+
+[ext_resource type="PackedScene" uid="uid://btwvo6a0aw04v" path="res://Firework/Firework.tscn" id="1_ig7tw"]
+
+[sub_resource type="Environment" id="Environment_7dm0k"]
+background_mode = 1
+
+[node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7dm0k")
+
+[node name="MainCam" type="Camera3D" parent="."]
+
+[node name="Firework" parent="." instance=ExtResource("1_ig7tw")]

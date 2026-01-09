@@ -1,0 +1,85 @@
+[gd_scene load_steps=16 format=3 uid="uid://btwvo6a0aw04v"]
+
+[ext_resource type="Script" uid="uid://bsxp8nij3dc26" path="res://Firework/firework.gd" id="1_t3rr0"]
+[ext_resource type="Shader" uid="uid://bx26j1c01l8fe" path="res://Firework/tail_partical.gdshader" id="2_jxvrw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t3rr0"]
+bounce = 0.8
+
+[sub_resource type="Curve" id="Curve_jxvrw"]
+_data = [Vector2(0, 1), 0.0, -2.695442, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dtvlx"]
+texture_mode = 1
+curve = SubResource("Curve_jxvrw")
+
+[sub_resource type="Curve" id="Curve_dtvlx"]
+_data = [Vector2(0.2942857, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20608264), -2.401032, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ysxqe"]
+curve = SubResource("Curve_dtvlx")
+
+[sub_resource type="Curve" id="Curve_t3rr0"]
+_data = [Vector2(0, 1), 0.0, -1.735386, 0, 0, Vector2(1, 0), -0.45058304, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jxvrw"]
+curve = SubResource("Curve_t3rr0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dtvlx"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_jxvrw")
+alpha_curve = SubResource("CurveTexture_dtvlx")
+emission_curve = SubResource("CurveTexture_ysxqe")
+
+[sub_resource type="Curve" id="Curve_ysxqe"]
+_data = [Vector2(0, 0), 0.0, 0.49481052, 0, 0, Vector2(0.9916202, 1), 1.8013014, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jxvxo"]
+curve = SubResource("Curve_ysxqe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtvlx"]
+render_priority = 0
+shader = ExtResource("2_jxvrw")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/outline_color = Color(0.53122747, 0.08732923, 5.583167e-06, 1)
+shader_parameter/fade = SubResource("CurveTexture_jxvxo")
+
+[sub_resource type="SphereMesh" id="SphereMesh_jxvxo"]
+material = SubResource("ShaderMaterial_dtvlx")
+radius = 0.25
+height = 0.5
+radial_segments = 32
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t3rr0"]
+radius = 0.05
+
+[node name="Firework" type="RigidBody3D"]
+mass = 0.05
+physics_material_override = SubResource("PhysicsMaterial_t3rr0")
+script = ExtResource("1_t3rr0")
+
+[node name="Head" type="GPUParticles3D" parent="."]
+lifetime = 3.0
+explosiveness = 1.0
+
+[node name="Tail" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0008291006, -5.9604645e-08, 0.003127247)
+emitting = false
+amount = 600
+lifetime = 2.0
+one_shot = true
+fixed_fps = 600
+process_material = SubResource("ParticleProcessMaterial_dtvlx")
+draw_pass_1 = SubResource("SphereMesh_jxvxo")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t3rr0")
