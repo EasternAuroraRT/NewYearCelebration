@@ -17,8 +17,8 @@ void vertex() {
 	vec3 direction = - VERTEX + CAMERA_POSITION_WORLD;
 	//vec3 direction = CAMERA_DIRECTION_WORLD;
 	float angle = acos(dot(direction, NORMAL) / (length(direction) * length(NORMAL)));
+	if(PI - angle * 2.0 < 0.25) angle = PI / 2.0;
 	COLOR = mix(mix(vec4(1.0,1.0,1.0,1.0), vec4(outline_color, .0), texture(fade, vec2(sin(angle), 1)).x), vec4(.0,.0,.0,.0), step(0.49*PI, angle));
-	//COLOR.a = mix(1.0, 0.0, texture(fade, vec2(sin(angle), sin(angle))).x);
 }
 
 void fragment() {

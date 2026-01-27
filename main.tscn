@@ -11,5 +11,6 @@ background_mode = 1
 environment = SubResource("Environment_7dm0k")
 
 [node name="MainCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6461382)
 
 [node name="Firework" parent="." instance=ExtResource("1_ig7tw")]
