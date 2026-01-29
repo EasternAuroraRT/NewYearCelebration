@@ -85,7 +85,7 @@ lifetime = 2.0
 randomness = 0.2
 fixed_fps = 600
 process_material = SubResource("ParticleProcessMaterial_dtvlx")
-draw_pass_1 = SubResource("SphereMesh_jxvxo")
+draw_pass_1 = SubResource("CapsuleMesh_dtvlx")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_t3rr0")
