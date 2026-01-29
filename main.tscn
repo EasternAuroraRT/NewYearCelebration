@@ -4,6 +4,13 @@
 
 [sub_resource type="Environment" id="Environment_7dm0k"]
 background_mode = 1
+ambient_light_source = 1
+reflected_light_source = 1
+glow_enabled = true
+glow_intensity = 1.75
+glow_bloom = 1.0
+glow_hdr_threshold = 0.8
+adjustment_enabled = true
 
 [node name="main" type="Node3D"]
 
