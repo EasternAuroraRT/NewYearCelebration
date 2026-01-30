@@ -2,5 +2,8 @@
 .godot/
 /android/
 *.uid
+<<<<<<< HEAD
+*.import
+=======
 *.import
 *.code-workspace
