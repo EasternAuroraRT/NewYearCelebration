@@ -3,8 +3,5 @@
 		{
 			"path": "."
 		}
-	],
-	"settings": {
-		"godotTools.editorPath.godot4": "/opt/Godot-4/Godot_v4.5.1"
-	}
+	]
 }

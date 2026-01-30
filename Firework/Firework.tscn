@@ -43,6 +43,7 @@ curve = SubResource("Curve_jxvrw")
 
 [sub_resource type="Curve" id="Curve_dtvlx"]
 _data = [Vector2(0.294286, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.206083), -2.40103, 0.0, 0, 0]
+_data = [Vector2(0.294286, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.206083), -2.40103, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_ysxqe"]
