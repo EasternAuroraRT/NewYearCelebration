@@ -1,35 +1,48 @@
-[gd_scene load_steps=19 format=3 uid="uid://btwvo6a0aw04v"]
+[gd_scene load_steps=23 format=3 uid="uid://btwvo6a0aw04v"]
 
 [ext_resource type="Script" uid="uid://bsxp8nij3dc26" path="res://Firework/firework.gd" id="1_t3rr0"]
+[ext_resource type="Material" uid="uid://d0va2qxla1ofe" path="res://Firework/Firework_head_material.tres" id="2_dtvlx"]
 [ext_resource type="CapsuleMesh" uid="uid://b7a6a3bk5fwqp" path="res://Firework/Firework_mesh.tres" id="2_jxvrw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t3rr0"]
 bounce = 0.8
 
 [sub_resource type="Curve" id="Curve_jxvxo"]
-_data = [Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.98883, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_0dkm4"]
 curve = SubResource("Curve_jxvxo")
 
+[sub_resource type="Curve" id="Curve_0dkm4"]
+_data = [Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rv4v5"]
+curve = SubResource("Curve_0dkm4")
+
+[sub_resource type="Curve" id="Curve_urjbi"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0.5, 10), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v3vlx"]
+curve = SubResource("Curve_urjbi")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rv4v5"]
+lifetime_randomness = 0.5
 direction = Vector3(0, 1, 0)
 spread = 120.0
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
+velocity_limit_curve = SubResource("CurveTexture_v3vlx")
 scale_min = 0.5
 scale_max = 1.2
+scale_curve = SubResource("CurveTexture_rv4v5")
 alpha_curve = SubResource("CurveTexture_0dkm4")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3rr0"]
-transparency = 1
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(0.94, 0.4136, 0.188, 1)
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_urjbi"]
-material = SubResource("StandardMaterial3D_t3rr0")
+material = ExtResource("2_dtvlx")
 radius = 0.05
 height = 0.1
 
@@ -42,7 +55,6 @@ texture_mode = 1
 curve = SubResource("Curve_jxvrw")
 
 [sub_resource type="Curve" id="Curve_dtvlx"]
-_data = [Vector2(0.294286, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.206083), -2.40103, 0.0, 0, 0]
 _data = [Vector2(0.294286, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.206083), -2.40103, 0.0, 0, 0]
 point_count = 2
 
@@ -86,11 +98,9 @@ physics_material_override = SubResource("PhysicsMaterial_t3rr0")
 script = ExtResource("1_t3rr0")
 
 [node name="Head" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 300
+amount = 600
 lifetime = 1.5
-one_shot = true
-explosiveness = 0.9
+explosiveness = 0.85
 randomness = 1.0
 fixed_fps = 600
 process_material = SubResource("ParticleProcessMaterial_rv4v5")
