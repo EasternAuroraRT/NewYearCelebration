@@ -85,8 +85,10 @@ physics_material_override = SubResource("PhysicsMaterial_t3rr0")
 script = ExtResource("1_t3rr0")
 
 [node name="Head" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 300
 lifetime = 1.5
+one_shot = true
 explosiveness = 0.9
 randomness = 1.0
 fixed_fps = 600

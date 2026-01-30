@@ -13,7 +13,7 @@ sky_material = SubResource("PanoramaSkyMaterial_h2yge")
 background_mode = 2
 sky = SubResource("Sky_1bvp3")
 glow_enabled = true
-glow_intensity = 6.12
+glow_intensity = 6.0
 glow_bloom = 0.75
 glow_hdr_threshold = 0.9
 
