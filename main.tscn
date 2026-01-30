@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://da1wcj0rvoir"]
+[gd_scene load_steps=6 format=3 uid="uid://da1wcj0rvoir"]
 
+[ext_resource type="Texture2D" uid="uid://bxoyk21a7krca" path="res://asset/8k_stars.jpg" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://btwvo6a0aw04v" path="res://Firework/Firework.tscn" id="1_ig7tw"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h2yge"]
+panorama = ExtResource("1_0xm2m")
+
+[sub_resource type="Sky" id="Sky_1bvp3"]
+sky_material = SubResource("PanoramaSkyMaterial_h2yge")
+
 [sub_resource type="Environment" id="Environment_7dm0k"]
-background_mode = 1
-ambient_light_source = 1
-reflected_light_source = 1
+background_mode = 2
+sky = SubResource("Sky_1bvp3")
 glow_enabled = true
-glow_intensity = 1.75
-glow_bloom = 1.0
-glow_hdr_threshold = 0.8
-adjustment_enabled = true
+glow_intensity = 6.0
+glow_bloom = 0.75
+glow_hdr_threshold = 0.9
 
 [node name="main" type="Node3D"]
 
@@ -18,6 +23,6 @@ adjustment_enabled = true
 environment = SubResource("Environment_7dm0k")
 
 [node name="MainCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6461382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.64614)
 
 [node name="Firework" parent="." instance=ExtResource("1_ig7tw")]
