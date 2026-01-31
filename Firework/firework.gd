@@ -9,10 +9,8 @@ extends RigidBody3D
 	set(value): $Tail.draw_pass_1.material.emission = value
 
 @export var fly_time: float = 1.5:
-	get: return $Tail.lifetime
-	set(value): $Tail.lifetime = value
-
-@onready var start_velocity: Vector3 = Vector3(0, (fly_time + 1) * 9.8, 0)
+	get: return $Tail.lifetime + 0.2
+	set(value): $Tail.lifetime = value - 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,14 +26,15 @@ func _process(delta: float) -> void:
 	pass
 
 func fire() -> void:
-	apply_impulse(start_velocity, Vector3(0,0,0))
+	var start_speed = fly_time * 9.8
+	apply_central_impulse(basis.y * start_speed)
 	$Tail.emitting = true
-	get_tree().create_timer(fly_time + 1).timeout.connect(func(): $Head.emitting = true)
+	get_tree().create_timer(fly_time).timeout.connect(func(): $Head.emitting = true)
 	pass
 
 func _enter_tree() -> void:
-	$Tail.finished.connect(self_destroy)
+	$Tail.finished.connect(_self_destroy)
 
-func self_destroy() -> void:
+func _self_destroy() -> void:
 	await get_tree().create_timer($Tail.lifetime).timeout
 	queue_free()

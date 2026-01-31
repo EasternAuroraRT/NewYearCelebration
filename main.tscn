@@ -25,6 +25,6 @@ script = ExtResource("1_h2yge")
 environment = SubResource("Environment_7dm0k")
 
 [node name="MainCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.898319, -0.439344, 0, 0.439344, 0.898319, 0, 0, 18)
+transform = Transform3D(1, 0, 0, 0, 0.86602557, -0.5000001, 0, 0.5000001, 0.86602557, 0, 0, 30)
 
 [node name="Firework" parent="." instance=ExtResource("1_ig7tw")]
