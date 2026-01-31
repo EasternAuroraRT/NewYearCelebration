@@ -12,7 +12,7 @@ config_version=5
 
 config/name="New Year Celebration"
 run/main_scene="uid://da1wcj0rvoir"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
@@ -24,3 +24,4 @@ window/size/viewport_height=1080
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

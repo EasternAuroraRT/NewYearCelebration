@@ -1,4 +1,4 @@
-[gd_resource type="CapsuleMesh" load_steps=2 format=3 uid="uid://b7a6a3bk5fwqp"]
+[gd_resource type="CapsuleMesh" format=3 uid="uid://b7a6a3bk5fwqp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3rr0"]
 transparency = 1

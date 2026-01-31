@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://btwvo6a0aw04v"]
+[gd_scene format=3 uid="uid://btwvo6a0aw04v"]
 
 [ext_resource type="Script" uid="uid://bsxp8nij3dc26" path="res://Firework/firework.gd" id="1_t3rr0"]
 
@@ -109,13 +109,13 @@ height = 0.1
 [sub_resource type="SphereShape3D" id="SphereShape3D_t3rr0"]
 radius = 0.05
 
-[node name="Firework" type="RigidBody3D"]
+[node name="Firework" type="RigidBody3D" unique_id=1085921913]
 collision_layer = 2
 mass = 0.05
 physics_material_override = SubResource("PhysicsMaterial_t3rr0")
 script = ExtResource("1_t3rr0")
 
-[node name="Head" type="GPUParticles3D" parent="."]
+[node name="Head" type="GPUParticles3D" parent="." unique_id=1718834431]
 amount = 300
 lifetime = 1.5
 explosiveness = 0.85
@@ -124,11 +124,11 @@ fixed_fps = 240
 process_material = SubResource("ParticleProcessMaterial_rv4v5")
 draw_pass_1 = SubResource("CapsuleMesh_v3vlx")
 
-[node name="Tail" type="GPUParticles3D" parent="."]
+[node name="Tail" type="GPUParticles3D" parent="." unique_id=1537862122]
 amount = 600
 fixed_fps = 600
 process_material = SubResource("ParticleProcessMaterial_42g16")
 draw_pass_1 = SubResource("CapsuleMesh_xxiqf")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=2129384341]
 shape = SubResource("SphereShape3D_t3rr0")
