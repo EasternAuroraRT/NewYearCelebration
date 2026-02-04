@@ -8,12 +8,16 @@ extends RigidBody3D
 	get: return $Tail.draw_pass_1.material.emission
 	set(value): $Tail.draw_pass_1.material.emission = value
 
-@export var fly_time: float = 1.5:
-	get: return $Tail.lifetime + 0.2
-	set(value): $Tail.lifetime = value - 0.2
+const _explose_delay: float = 0.5
+
+@export var fly_time: float:
+	get: return $Tail.lifetime + _explose_delay
+	set(value): $Tail.lifetime = value - _explose_delay
+signal destroyed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	fly_time = 1.5
 	$Head.emitting = false
 	$Head.one_shot = true
 	$Tail.emitting = false
@@ -21,20 +25,21 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var should_accelerate: bool = false
 func _process(delta: float) -> void:
-	#position = Vector3.ZERO
-	pass
+	if(should_accelerate):
+		apply_central_force(basis.y * 12.0 * mass)
 
 func fire() -> void:
-	var start_speed = fly_time * 9.8
-	apply_central_impulse(basis.y * start_speed)
 	$Tail.emitting = true
+	should_accelerate = true
+	get_tree().create_timer($Tail.lifetime).timeout.connect(func(): should_accelerate = false)
 	get_tree().create_timer(fly_time).timeout.connect(func(): $Head.emitting = true)
-	pass
 
 func _enter_tree() -> void:
 	$Tail.finished.connect(_self_destroy)
 
 func _self_destroy() -> void:
-	await get_tree().create_timer($Tail.lifetime).timeout
+	await get_tree().create_timer($Head.lifetime).timeout
+	destroyed.emit()
 	queue_free()

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://da1wcj0rvoir"]
 
 [ext_resource type="Texture2D" uid="uid://bxoyk21a7krca" path="res://asset/8k_stars.jpg" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://c4g843rfxk0b1" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://c4g843rfxk0b1" path="res://firework_starter.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://btwvo6a0aw04v" path="res://Firework/Firework.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dga7r0mgytq66" path="res://main_cam.gd" id="2_1bvp3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h2yge"]
 panorama = ExtResource("1_0xm2m")
@@ -14,17 +15,22 @@ sky_material = SubResource("PanoramaSkyMaterial_h2yge")
 background_mode = 2
 sky = SubResource("Sky_1bvp3")
 glow_enabled = true
-glow_intensity = 6.0
-glow_bloom = 0.75
+glow_intensity = 7.0
+glow_bloom = 0.8
 glow_hdr_threshold = 0.9
 
 [node name="main" type="Node3D" unique_id=808091791]
-script = ExtResource("1_h2yge")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=406247961]
 environment = SubResource("Environment_7dm0k")
 
 [node name="MainCam" type="Camera3D" parent="." unique_id=1528974834]
-transform = Transform3D(1, 0, 0, 0, 0.86602557, -0.5000001, 0, 0.5000001, 0.86602557, 0, 0, 30)
+transform = Transform3D(1, 0, 0, 0, 0.83417475, -0.55150026, 0, 0.55150026, 0.83417475, 0, 0, 22.51712)
+script = ExtResource("2_1bvp3")
 
 [node name="Firework" parent="." unique_id=811308923 instance=ExtResource("1_ig7tw")]
+collision_layer = 8388608
+
+[node name="FireworkStarter" type="Node3D" parent="." unique_id=1118862899]
+script = ExtResource("1_h2yge")
+random_range = 45.0

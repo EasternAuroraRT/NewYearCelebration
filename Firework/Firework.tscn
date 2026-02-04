@@ -49,8 +49,8 @@ emission = Color(0.94, 0.4136, 0.188, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v3vlx"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_urjbi")
-radius = 0.05
-height = 0.1
+radius = 0.075
+height = 0.15
 
 [sub_resource type="Curve" id="Curve_mhgio"]
 _data = [Vector2(0, 1), 0.0, -2.35093, 0, 0, Vector2(1, 0), 0.0399746, 0.0, 0, 0]
@@ -84,9 +84,10 @@ curve = SubResource("Curve_gyoki")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_42g16"]
 resource_local_to_scene = true
+lifetime_randomness = 0.2
 angle_min = -180.0
 angle_max = 180.0
-inherit_velocity_ratio = 0.5
+inherit_velocity_ratio = 1.0
 direction = Vector3(0, -1, 0)
 spread = 5.0
 initial_velocity_max = 10.0
@@ -94,6 +95,10 @@ velocity_limit_curve = SubResource("CurveTexture_xgnlh")
 scale_curve = SubResource("CurveTexture_m5k8h")
 alpha_curve = SubResource("CurveTexture_qmggt")
 emission_curve = SubResource("CurveTexture_l8jsf")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.5
+collision_use_scale = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eum2h"]
 transparency = 1
@@ -116,17 +121,17 @@ physics_material_override = SubResource("PhysicsMaterial_t3rr0")
 script = ExtResource("1_t3rr0")
 
 [node name="Head" type="GPUParticles3D" parent="." unique_id=1718834431]
-amount = 300
-lifetime = 1.5
-explosiveness = 0.85
+amount = 120
+explosiveness = 0.8
 randomness = 1.0
-fixed_fps = 240
+fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_rv4v5")
 draw_pass_1 = SubResource("CapsuleMesh_v3vlx")
 
 [node name="Tail" type="GPUParticles3D" parent="." unique_id=1537862122]
 amount = 600
-fixed_fps = 600
+randomness = 0.2
+fixed_fps = 240
 process_material = SubResource("ParticleProcessMaterial_42g16")
 draw_pass_1 = SubResource("CapsuleMesh_xxiqf")
 
