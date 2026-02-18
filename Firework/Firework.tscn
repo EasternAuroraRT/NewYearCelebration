@@ -45,7 +45,7 @@ transparency = 1
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(0.94, 0.4136, 0.188, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 3.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v3vlx"]
 resource_local_to_scene = true
@@ -106,7 +106,7 @@ transparency = 1
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(0.94, 0.4136, 0.188, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 3.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xxiqf"]
 material = SubResource("StandardMaterial3D_eum2h")
