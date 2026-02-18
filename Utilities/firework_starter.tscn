@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dqs67q1tgchd0"]
+
+[ext_resource type="Script" uid="uid://c4g843rfxk0b1" path="res://Utilities/firework_starter.gd" id="1_uy7fl"]
+
+[node name="FireworkStarter" type="Node3D" unique_id=213725095]
+script = ExtResource("1_uy7fl")
+random_range = 45.0

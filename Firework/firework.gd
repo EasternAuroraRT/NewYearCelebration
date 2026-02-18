@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+@export_group("Visual")
 @export var head_color: Color = Color.RED:
 	get: return $Head.draw_pass_1.material.emission
 	set(value): $Head.draw_pass_1.material.emission = value
@@ -8,16 +9,19 @@ extends RigidBody3D
 	get: return $Tail.draw_pass_1.material.emission
 	set(value): $Tail.draw_pass_1.material.emission = value
 
-const _explose_delay: float = 0.5
+const _explose_delay: float = 0.1
 
-@export var fly_time: float:
+@export_group("Physics")
+@export var fly_time: float = 1.5:
 	get: return $Tail.lifetime + _explose_delay
 	set(value): $Tail.lifetime = value - _explose_delay
+
+@export var acceleration: float = 15.0
+
 signal destroyed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fly_time = 1.5
 	$Head.emitting = false
 	$Head.one_shot = true
 	$Tail.emitting = false
@@ -26,15 +30,22 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var should_accelerate: bool = false
+var queue_explose: bool = false
 func _process(delta: float) -> void:
 	if(should_accelerate):
-		apply_central_force(basis.y * 12.0 * mass)
+		apply_central_force(basis.y * acceleration * mass)
+	if(queue_explose):
+		$Head.emitting = true
+		queue_explose = false
 
 func fire() -> void:
 	$Tail.emitting = true
 	should_accelerate = true
-	get_tree().create_timer($Tail.lifetime).timeout.connect(func(): should_accelerate = false)
-	get_tree().create_timer(fly_time).timeout.connect(func(): $Head.emitting = true)
+	await get_tree().create_timer($Tail.lifetime).timeout
+	should_accelerate = false
+	await get_tree().create_timer(_explose_delay).timeout
+	sleeping = true
+	queue_explose = true
 
 func _enter_tree() -> void:
 	$Tail.finished.connect(_self_destroy)

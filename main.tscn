@@ -1,9 +1,26 @@
 [gd_scene format=3 uid="uid://da1wcj0rvoir"]
 
 [ext_resource type="Texture2D" uid="uid://bxoyk21a7krca" path="res://asset/8k_stars.jpg" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://c4g843rfxk0b1" path="res://firework_starter.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://csespex1eus3i" path="res://ui.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://btwvo6a0aw04v" path="res://Firework/Firework.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://dga7r0mgytq66" path="res://main_cam.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://bn8s8rrcbo6gy" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dt7lxs06ubmg" path="res://Player Controller/player_controller.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dqs67q1tgchd0" path="res://Utilities/firework_starter.tscn" id="5_lquwl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
+font_size = 28
+outline_size = 8
+outline_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.224, 0.64, 0.5221333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+material = SubResource("StandardMaterial3D_1bvp3")
+size = Vector2(100, 100)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lquwl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h2yge"]
 panorama = ExtResource("1_0xm2m")
@@ -15,22 +32,65 @@ sky_material = SubResource("PanoramaSkyMaterial_h2yge")
 background_mode = 2
 sky = SubResource("Sky_1bvp3")
 glow_enabled = true
-glow_intensity = 7.0
-glow_bloom = 0.8
+glow_intensity = 8.0
 glow_hdr_threshold = 0.9
 
-[node name="main" type="Node3D" unique_id=808091791]
+[node name="Game" type="Node" unique_id=498440726]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=406247961]
+[node name="UI" type="Control" parent="." unique_id=1816669948]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_7mycd")
+
+[node name="Label" type="Label" parent="UI" unique_id=1442847644]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -159.5
+offset_top = -38.0
+offset_right = 159.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press F to interact"
+label_settings = SubResource("LabelSettings_7mycd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main" type="Node3D" parent="." unique_id=808091791]
+script = ExtResource("1_lquwl")
+
+[node name="Floor" type="MeshInstance3D" parent="main" unique_id=997300566]
+mesh = SubResource("PlaneMesh_1bvp3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="main/Floor" unique_id=458766559]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Floor/StaticBody3D" unique_id=2127989233]
+shape = SubResource("WorldBoundaryShape3D_lquwl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="main" unique_id=406247961]
 environment = SubResource("Environment_7dm0k")
 
-[node name="MainCam" type="Camera3D" parent="." unique_id=1528974834]
-transform = Transform3D(1, 0, 0, 0, 0.83417475, -0.55150026, 0, 0.55150026, 0.83417475, 0, 0, 22.51712)
-script = ExtResource("2_1bvp3")
+[node name="PlayerController" parent="main" unique_id=2010758033 instance=ExtResource("2_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0998623, 22.517)
 
-[node name="Firework" parent="." unique_id=811308923 instance=ExtResource("1_ig7tw")]
+[node name="Firework" parent="main" unique_id=811308923 instance=ExtResource("1_ig7tw")]
 collision_layer = 8388608
 
-[node name="FireworkStarter" type="Node3D" parent="." unique_id=1118862899]
-script = ExtResource("1_h2yge")
-random_range = 45.0
+[node name="FireworkStarter" parent="main" unique_id=213725095 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+random_range = 15.0
+
+[node name="StarLight" type="DirectionalLight3D" parent="main" unique_id=2017632859]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659259, 0, -0.9659259, 0.25881907, 0, 0, 0)
+light_energy = 0.05
+light_angular_distance = 60.0
+light_specular = 0.0
