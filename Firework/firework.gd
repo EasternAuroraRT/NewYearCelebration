@@ -31,7 +31,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var should_accelerate: bool = false
 var queue_explose: bool = false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(should_accelerate):
 		apply_central_force(basis.y * acceleration * mass)
 	if(queue_explose):

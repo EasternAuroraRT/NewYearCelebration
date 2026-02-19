@@ -24,3 +24,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+@onready var reset_transform: Transform3D = global_transform
+
+func _unhandled_input(event: InputEvent) -> void:
+	if(event.is_action("game_reset")):
+		global_transform = reset_transform
+		pass

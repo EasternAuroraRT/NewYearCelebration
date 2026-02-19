@@ -123,6 +123,8 @@ mass = 0.05
 physics_material_override = SubResource("PhysicsMaterial_t3rr0")
 script = ExtResource("1_t3rr0")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1523672148]
+
 [node name="Head" type="GPUParticles3D" parent="." unique_id=1718834431]
 amount = 120
 explosiveness = 0.8

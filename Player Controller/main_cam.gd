@@ -6,19 +6,19 @@ extends Camera3D
 
 var mouse_move_base_fac: float = 0.001
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	global_transform = $"../CameraControllerAnchor".get_global_transform_interpolated()
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED) or (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
+		if(not event is InputEventMouseMotion): return
 		var mouse_delta_processed: Vector2 = -event.relative * mouse_sensitivity * mouse_move_base_fac * (-1 if reverse_mouse_input else 1)
 		get_parent().rotate(Vector3.UP, mouse_delta_processed.x);
-		rotate(Vector3.RIGHT, mouse_delta_processed.y);
+		$"../CameraControllerAnchor".rotate(Vector3.RIGHT, mouse_delta_processed.y);
