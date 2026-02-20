@@ -129,14 +129,14 @@ script = ExtResource("1_t3rr0")
 amount = 120
 explosiveness = 0.8
 randomness = 1.0
-fixed_fps = 120
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_rv4v5")
 draw_pass_1 = SubResource("CapsuleMesh_v3vlx")
 
 [node name="Tail" type="GPUParticles3D" parent="." unique_id=1537862122]
 amount = 600
 randomness = 0.2
-fixed_fps = 240
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_42g16")
 draw_pass_1 = SubResource("CapsuleMesh_xxiqf")
 

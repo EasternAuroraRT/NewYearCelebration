@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://da1wcj0rvoir"]
 
-[ext_resource type="Texture2D" uid="uid://bxoyk21a7krca" path="res://asset/8k_stars.jpg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://csespex1eus3i" path="res://ui.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://btwvo6a0aw04v" path="res://Firework/Firework.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_kek77"]
 [ext_resource type="Script" uid="uid://bn8s8rrcbo6gy" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dt7lxs06ubmg" path="res://Player Controller/player_controller.tscn" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://qfididdhkp8h" path="res://asset/8k_stars_milky_way.jpg" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://genseou1sqh8" path="res://asset/Models/InteractiveDevice.blend" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://dqs67q1tgchd0" path="res://Utilities/firework_starter.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://bpfa8q23ox8q0" path="res://Utilities/egg.gd" id="6_5vw27"]
@@ -124,12 +125,21 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
-font_size = 28
+font_size = 58
 outline_size = 8
 outline_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kek77"]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4c57u"]
+radius = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_efxa6"]
+radius = 80.0
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h2yge"]
-panorama = ExtResource("1_0xm2m")
+panorama = ExtResource("4_kek77")
 
 [sub_resource type="Sky" id="Sky_1bvp3"]
 sky_material = SubResource("PanoramaSkyMaterial_h2yge")
@@ -193,6 +203,9 @@ size = Vector3(2.5, 1, 2.5)
 height = 1.0
 radius = 0.2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vivmo"]
+size = Vector3(31, 1, 10)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ycdy4"]
 size = Vector3(349.24658, 1, 125.89804)
 
@@ -205,7 +218,17 @@ size = Vector3(1000, 1000, 1)
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_kek77")
 
-[node name="UI" type="Control" parent="." unique_id=1816669948]
+[node name="UI" type="CanvasLayer" parent="." unique_id=475247741]
+
+[node name="Virtual Joystick" parent="UI" unique_id=966158985 instance=ExtResource("1_kek77")]
+offset_left = -243.0
+offset_top = -728.0
+offset_right = 835.0
+offset_bottom = 350.0
+joystick_mode = 1
+visibility_mode = 1
+
+[node name="UI" type="Control" parent="UI" unique_id=1816669948]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 7
@@ -217,7 +240,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_7mycd")
 
-[node name="Label" type="Label" parent="UI" unique_id=1442847644]
+[node name="Label" type="Label" parent="UI/UI" unique_id=1442847644]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
@@ -232,6 +255,79 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Press F to interact"
 label_settings = SubResource("LabelSettings_7mycd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="UI/UI" unique_id=1373832566]
+anchors_preset = 0
+offset_left = 6.0
+offset_top = -33.0
+offset_right = 46.0
+offset_bottom = 7.0
+
+[node name="Jump" type="TouchScreenButton" parent="UI/UI/Buttons" unique_id=978787763]
+position = Vector2(766, -136)
+shape = SubResource("CircleShape2D_kek77")
+action = "game_jump"
+
+[node name="Label" type="Label" parent="UI/UI/Buttons/Jump" unique_id=1031104030]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -37.5
+offset_right = 67.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reset" type="TouchScreenButton" parent="UI/UI/Buttons" unique_id=1784672869]
+position = Vector2(588, -288)
+shape = SubResource("CircleShape2D_4c57u")
+action = "game_reset"
+
+[node name="Label" type="Label" parent="UI/UI/Buttons/Reset" unique_id=843903236]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -37.5
+offset_right = 67.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "R"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Interact" type="TouchScreenButton" parent="UI/UI/Buttons" unique_id=58636608]
+position = Vector2(535, -99)
+shape = SubResource("CircleShape2D_efxa6")
+action = "game_interact"
+
+[node name="Label" type="Label" parent="UI/UI/Buttons/Interact" unique_id=1726910646]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -37.5
+offset_right = 67.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "F"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -512,6 +608,12 @@ light_energy = 1.5
 spot_range = 5.768482
 spot_angle = 27.320597
 
+[node name="ShouldResetArea" type="Area3D" parent="main/Layout/Platforms" unique_id=600373327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 18)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Platforms/ShouldResetArea" unique_id=495954890]
+shape = SubResource("BoxShape3D_vivmo")
+
 [node name="Boundry" type="Node3D" parent="main/Layout" unique_id=187359274]
 
 [node name="Warning" type="Area3D" parent="main/Layout/Boundry" unique_id=669719616]
@@ -544,5 +646,7 @@ collision_layer = 8388608
 [connection signal="body_entered" from="main/Layout/Platforms/Platform2/AntiEgg" to="main/Layout/Egg" method="_on_anti_egg_body_entered"]
 [connection signal="body_entered" from="main/Layout/Platforms/PlatformFinal/Interactive/Area3D" to="main/Layout/FireworkStarter" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="main/Layout/Platforms/PlatformFinal/Interactive/Area3D" to="main/Layout/FireworkStarter" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="main/Layout/Boundry/Warning" to="UI" method="_on_warning_body_entered"]
-[connection signal="body_exited" from="main/Layout/Boundry/Warning" to="UI" method="_on_warning_body_exited"]
+[connection signal="body_entered" from="main/Layout/Platforms/ShouldResetArea" to="UI/UI" method="_on_should_reset_area_body_entered"]
+[connection signal="body_exited" from="main/Layout/Platforms/ShouldResetArea" to="UI/UI" method="_on_should_reset_area_body_exited"]
+[connection signal="body_entered" from="main/Layout/Boundry/Warning" to="UI/UI" method="_on_warning_body_entered"]
+[connection signal="body_exited" from="main/Layout/Boundry/Warning" to="UI/UI" method="_on_warning_body_exited"]

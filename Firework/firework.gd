@@ -16,7 +16,7 @@ const _explose_delay: float = 0.1
 	get: return $Tail.lifetime + _explose_delay
 	set(value): $Tail.lifetime = value - _explose_delay
 
-@export var acceleration: float = 15.0
+@export var acceleration: float = 50
 
 signal destroyed
 
@@ -31,7 +31,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var should_accelerate: bool = false
 var queue_explose: bool = false
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if(should_accelerate):
 		apply_central_force(basis.y * acceleration * mass)
 	if(queue_explose):

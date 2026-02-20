@@ -11,6 +11,9 @@ var gradiant_time: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Label.self_modulate = inactive_color
+	#label_active = true
+	if(OS.get_name() != "Android" and OS.get_name() != "iOS"):
+		$Buttons.queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,6 +41,12 @@ func _on_warning_body_entered(body: Node3D) -> void:
 			get_tree().reload_current_scene()
 
 
-func _on_warning_body_exited(body: Node3D) -> void:
+func _on_should_reset_area_body_entered(body: Node3D) -> void:
 	if(body.name.contains("Player")):
-		entering_dangerous_zone = false
+		$Label.text = "Press R to reset"
+		label_active = true
+
+
+func _on_should_reset_area_body_exited(body: Node3D) -> void:
+	if(body.name.contains("Player")):
+		label_active = false

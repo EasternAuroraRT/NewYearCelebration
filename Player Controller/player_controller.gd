@@ -30,4 +30,3 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if(event.is_action("game_reset")):
 		global_transform = reset_transform
-		pass

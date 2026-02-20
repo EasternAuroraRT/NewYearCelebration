@@ -24,14 +24,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if(body.name.contains("Player")):
-		print("player entered!")
-		#%UI/Label.text = "Press F to interact."
+		%UI/Label.text = "Press F to interact"
 		can_interact = true
 		%UI.label_active = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if(body.name.contains("Player")):
-		print("player exited!")
 		can_interact = false
 		%UI.label_active = false

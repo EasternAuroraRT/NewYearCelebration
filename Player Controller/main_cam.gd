@@ -17,8 +17,8 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED) or (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
-		if(not event is InputEventMouseMotion): return
+	if (event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED) or (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) or (event is InputEventScreenDrag)):
+		if(not (event is InputEventMouseMotion or event is InputEventScreenDrag)): return
 		var mouse_delta_processed: Vector2 = -event.relative * mouse_sensitivity * mouse_move_base_fac * (-1 if reverse_mouse_input else 1)
 		get_parent().rotate(Vector3.UP, mouse_delta_processed.x);
 		$"../CameraControllerAnchor".rotate(Vector3.RIGHT, mouse_delta_processed.y);
