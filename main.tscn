@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://bn8s8rrcbo6gy" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dt7lxs06ubmg" path="res://Player Controller/player_controller.tscn" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://qfididdhkp8h" path="res://asset/8k_stars_milky_way.jpg" id="4_kek77"]
-[ext_resource type="PackedScene" uid="uid://genseou1sqh8" path="res://asset/Models/InteractiveDevice.blend" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://dqs67q1tgchd0" path="res://Utilities/firework_starter.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://bpfa8q23ox8q0" path="res://Utilities/egg.gd" id="6_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dky5humlr4x07" path="res://asset/Models/InteractiveDevice.fbx" id="8_kek77"]
 
 [sub_resource type="Animation" id="Animation_kek77"]
 resource_name = "EggInfoLabel"
@@ -595,12 +595,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94260883, 0, 0.84729385)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5677819, 0)
 shape = SubResource("BoxShape3D_kek77")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="main/Layout/Platforms/PlatformFinal/Interactive" unique_id=57514654]
+[node name="InteractiveDevice" parent="main/Layout/Platforms/PlatformFinal/Interactive" unique_id=1012360623 instance=ExtResource("8_kek77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011882782, 0, -0.0017299652)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Platforms/PlatformFinal/Interactive/StaticBody3D" unique_id=62258067]
+[node name="StaticBody3D" type="StaticBody3D" parent="main/Layout/Platforms/PlatformFinal/Interactive/InteractiveDevice" unique_id=938112560]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Platforms/PlatformFinal/Interactive/InteractiveDevice/StaticBody3D" unique_id=1410530273]
 shape = SubResource("CylinderShape3D_4c57u")
-
-[node name="InteractiveDevice" parent="main/Layout/Platforms/PlatformFinal/Interactive" unique_id=640846197 instance=ExtResource("5_272bh")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="main/Layout/Platforms/PlatformFinal" unique_id=1722121148]
 transform = Transform3D(0.8528098, 0.01780145, 0.5219182, -0.47129244, 0.45672563, 0.75450975, -0.22494203, -0.8894294, 0.3978898, 0.028591156, 2.350068, -0.42804337)
