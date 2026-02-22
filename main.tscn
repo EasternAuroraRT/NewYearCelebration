@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://qfididdhkp8h" path="res://asset/8k_stars_milky_way.jpg" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://dqs67q1tgchd0" path="res://Utilities/firework_starter.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://bpfa8q23ox8q0" path="res://Utilities/egg.gd" id="6_5vw27"]
+[ext_resource type="Script" uid="uid://c3xsw0uygcrwm" path="res://egg_road.gd" id="8_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dky5humlr4x07" path="res://asset/Models/InteractiveDevice.fbx" id="8_kek77"]
 
 [sub_resource type="Animation" id="Animation_kek77"]
@@ -16,7 +17,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("main/Layout/Egg/EggInfoLabel:modulate")
+tracks/0/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -28,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("main/Layout/Egg/EggInfoLabel:outline_modulate")
+tracks/1/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:outline_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -44,7 +45,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("main/Layout/Egg/EggStartLabel:modulate")
+tracks/0/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -56,7 +57,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("main/Layout/Egg/EggStartLabel:outline_modulate")
+tracks/1/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:outline_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -71,7 +72,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("main/Layout/Egg/EggStartLabel:modulate")
+tracks/0/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +84,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("main/Layout/Egg/EggStartLabel:outline_modulate")
+tracks/1/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:outline_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -95,7 +96,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("main/Layout/Egg/EggInfoLabel:modulate")
+tracks/2/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -107,7 +108,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("main/Layout/Egg/EggInfoLabel:outline_modulate")
+tracks/3/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:outline_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -124,11 +125,6 @@ _data = {
 &"RESET": SubResource("Animation_5vw27")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
-font_size = 58
-outline_size = 8
-outline_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_kek77"]
 radius = 120.0
 
@@ -137,6 +133,11 @@ radius = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efxa6"]
 radius = 80.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
+font_size = 58
+outline_size = 8
+outline_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h2yge"]
 panorama = ExtResource("4_kek77")
@@ -147,10 +148,7 @@ sky_material = SubResource("PanoramaSkyMaterial_h2yge")
 [sub_resource type="Environment" id="Environment_7dm0k"]
 background_mode = 2
 sky = SubResource("Sky_1bvp3")
-ssr_enabled = true
 ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
 glow_enabled = true
 glow_intensity = 8.0
 glow_hdr_threshold = 0.9
@@ -166,6 +164,7 @@ size = Vector2(10000, 10000)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lquwl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
+size = Vector3(1, 0.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
 albedo_color = Color(0.69, 0.3795, 0.45194992, 1)
@@ -178,19 +177,32 @@ size = Vector3(7, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_efxa6"]
 size = Vector3(21, 1, 11)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kek77"]
+plane = Plane(0, -1, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
+size = Vector3(3, 20, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+albedo_color = Color(0.315854, 0.47777748, 0.8018256, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_color = Color(0.15197787, 0.5575602, 0.5260068, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c57u"]
 size = Vector3(1, 0.5, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
-material = SubResource("StandardMaterial3D_7mycd")
-size = Vector3(1, 0.5, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
+[sub_resource type="Curve3D" id="Curve3D_kek77"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -2.76, 0.355, 0, 0, 0, 0, 1.455, -0.23, 2.785, -1.45, 0.42, -3.875, -7.9723053, 0.68631077, -3.4432049, 0, -0.215, 0, 0, 1.05, -4.935, -9.749525, 2.1156492, -14.785297, -0.405, -0.185, -0.86, 1.235, 0.34, -3.565, -6.739, 3.545, -30.172, -3.54, -0.47, 0.64, 0.475, 0.455, -1.055, 9.523512, 6.518483, -43.21149, -9.52, -0.575, -5.63, 0.805, -0.215, 0.115, 33.69, 8.005, -42.818, -2.015, -0.595, -7.38, 1.105, 0.15, 2.295, 42.8274, 9.549003, -30.463142, 1.1, -0.525, -1.675, -1.895, 0.455, 2.6, 40.826, 10.578, -14.902, 7, -1.02, 0.87, -6.035, 1.315, -0.4, 25.954, 13.609, -9.089, 1.28, -1.03, 3.145, -0.395, 0.345, -1.725, 13.741, 16.353, -14.829, -1.015, -0.82, 1.375, 0, 0.055, 0, 14.027, 17.75, -19.173, 0, 0, 0, 0, 0, 0, 16.878012, 18.971622, -22.554707),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
 size = Vector3(5, 0.5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kek77"]
 material = SubResource("StandardMaterial3D_7mycd")
@@ -202,6 +214,18 @@ size = Vector3(2.5, 1, 2.5)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4c57u"]
 height = 1.0
 radius = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]
+size = Vector3(6, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
+material = SubResource("StandardMaterial3D_7mycd")
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vivmo"]
 size = Vector3(31, 1, 10)
@@ -218,59 +242,34 @@ size = Vector3(1000, 1000, 1)
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_kek77")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=475247741]
-
-[node name="Virtual Joystick" parent="UI" unique_id=966158985 instance=ExtResource("1_kek77")]
-offset_left = -243.0
-offset_top = -728.0
-offset_right = 835.0
-offset_bottom = 350.0
-joystick_mode = 1
-visibility_mode = 1
-
-[node name="UI" type="Control" parent="UI" unique_id=1816669948]
+[node name="UI" type="Node" parent="." unique_id=1790347234]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
 script = ExtResource("1_7mycd")
 
-[node name="Label" type="Label" parent="UI/UI" unique_id=1442847644]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+[node name="Virtual Joystick" parent="UI" unique_id=966158985 instance=ExtResource("1_kek77")]
+offset_left = -334.0
+offset_top = -684.0
+offset_right = 744.0
+offset_bottom = 394.0
+joystick_mode = 1
+visibility_mode = 2
+
+[node name="Buttons" type="Control" parent="UI" unique_id=1373832566]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -159.5
-offset_top = -38.0
-offset_right = 159.5
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 0
-text = "Press F to interact"
-label_settings = SubResource("LabelSettings_7mycd")
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Buttons" type="Control" parent="UI/UI" unique_id=1373832566]
-anchors_preset = 0
-offset_left = 6.0
-offset_top = -33.0
-offset_right = 46.0
-offset_bottom = 7.0
-
-[node name="Jump" type="TouchScreenButton" parent="UI/UI/Buttons" unique_id=978787763]
-position = Vector2(766, -136)
+[node name="Jump" type="TouchScreenButton" parent="UI/Buttons" unique_id=978787763]
+position = Vector2(-176, -161)
 shape = SubResource("CircleShape2D_kek77")
 action = "game_jump"
 
-[node name="Label" type="Label" parent="UI/UI/Buttons/Jump" unique_id=1031104030]
+[node name="Label" type="Label" parent="UI/Buttons/Jump" unique_id=1031104030]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -286,13 +285,14 @@ theme_override_font_sizes/font_size = 56
 text = "Jump"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Reset" type="TouchScreenButton" parent="UI/UI/Buttons" unique_id=1784672869]
-position = Vector2(588, -288)
+[node name="Reset" type="TouchScreenButton" parent="UI/Buttons" unique_id=1784672869]
+position = Vector2(-354, -313)
 shape = SubResource("CircleShape2D_4c57u")
 action = "game_reset"
 
-[node name="Label" type="Label" parent="UI/UI/Buttons/Reset" unique_id=843903236]
+[node name="Label" type="Label" parent="UI/Buttons/Reset" unique_id=843903236]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -309,12 +309,12 @@ text = "R"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Interact" type="TouchScreenButton" parent="UI/UI/Buttons" unique_id=58636608]
-position = Vector2(535, -99)
+[node name="Interact" type="TouchScreenButton" parent="UI/Buttons" unique_id=58636608]
+position = Vector2(-407, -124)
 shape = SubResource("CircleShape2D_efxa6")
 action = "game_interact"
 
-[node name="Label" type="Label" parent="UI/UI/Buttons/Interact" unique_id=1726910646]
+[node name="Label" type="Label" parent="UI/Buttons/Interact" unique_id=1726910646]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -331,8 +331,34 @@ text = "F"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label" type="Label" parent="UI" unique_id=1442847644]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -330.5
+offset_top = -78.0
+offset_right = 330.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press F to interact"
+label_settings = SubResource("LabelSettings_7mycd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="main" type="Node3D" parent="." unique_id=808091791]
 script = ExtResource("1_lquwl")
+
+[node name="Debug" type="Node3D" parent="main" unique_id=663398798]
+unique_name_in_owner = true
+
+[node name="DebugEgg" type="Marker3D" parent="main/Debug" unique_id=564580938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.921516, 1.2608557, 19.963547)
+
+[node name="DebugEggPlatform" type="Marker3D" parent="main/Debug" unique_id=957432825]
+transform = Transform3D(-0.741929, 0, -0.6704784, 0, 1, 0, 0.6704784, 0, -0.741929, 20.905457, 6.631965, 14.085359)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="main" unique_id=406247961]
 environment = SubResource("Environment_7dm0k")
@@ -394,7 +420,7 @@ material_overlay = SubResource("StandardMaterial3D_272bh")
 mesh = SubResource("BoxMesh_5vw27")
 
 [node name="Box4" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=1488932983]
-transform = Transform3D(0.66392624, 0, -0.7477981, 0, 1, 0, 0.7477981, 0, 0.66392624, -7.1245832, 0.49999976, -0.36639214)
+transform = Transform3D(0.66392624, 0, -0.7477981, 0, 1, 0, 0.7477981, 0, 0.66392624, -5.561963, 0.49999976, 0.64004135)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box4" unique_id=182643081]
 shape = SubResource("BoxShape3D_7mycd")
@@ -404,17 +430,18 @@ material_overlay = SubResource("StandardMaterial3D_272bh")
 mesh = SubResource("BoxMesh_5vw27")
 
 [node name="Box5" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=810680000]
-transform = Transform3D(0.94852835, 0, -0.31669214, 0, 1, 0, 0.31669214, 0, 0.94852835, 0.38928366, 0.49999976, -9.411751)
+transform = Transform3D(0.93486285, 0, 0.35500908, 0, 1, 0, -0.35500908, 0, 0.93486285, -7.08207, 0.49999976, -13.652406)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box5" unique_id=1215914502]
 shape = SubResource("BoxShape3D_7mycd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box5" unique_id=651768307]
+transform = Transform3D(1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1, 0, 0, 0)
 material_overlay = SubResource("StandardMaterial3D_272bh")
 mesh = SubResource("BoxMesh_5vw27")
 
 [node name="Box6" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=988857939]
-transform = Transform3D(0.88268524, 0, -0.4699646, 0, 1, 0, 0.4699646, 0, 0.88268524, 6.9899597, 0.49999976, -10.877879)
+transform = Transform3D(0.99981433, 0, 0.019267231, 0, 1, 0, -0.019267231, 0, 0.99981433, 13.582704, 0.49999976, -13.765761)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box6" unique_id=1788542752]
 shape = SubResource("BoxShape3D_7mycd")
@@ -424,7 +451,7 @@ material_overlay = SubResource("StandardMaterial3D_272bh")
 mesh = SubResource("BoxMesh_5vw27")
 
 [node name="Box7" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=1290898345]
-transform = Transform3D(0.9671791, 0, -0.25409555, 0, 1, 0, 0.25409555, 0, 0.9671791, 0.5894871, 0.49999976, -19.425404)
+transform = Transform3D(0.9964047, 0, 0.08472136, 0, 1, 0, -0.08472136, 0, 0.9964047, 0.0010890961, 0.49999976, -20.013802)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box7" unique_id=249023849]
 shape = SubResource("BoxShape3D_7mycd")
@@ -434,12 +461,63 @@ material_overlay = SubResource("StandardMaterial3D_272bh")
 mesh = SubResource("BoxMesh_5vw27")
 
 [node name="Box8" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=1062427139]
-transform = Transform3D(0.54496104, 0, 0.8384614, 0, 1, 0, -0.8384614, 0, 0.54496104, -11.252492, 0.49999976, -12.873573)
+transform = Transform3D(0.54496104, 0, 0.8384614, 0, 1, 0, -0.8384614, 0, 0.54496104, -9.24158, 0.49999976, -7.1679125)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box8" unique_id=1875423157]
 shape = SubResource("BoxShape3D_7mycd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box8" unique_id=2097751614]
+material_overlay = SubResource("StandardMaterial3D_272bh")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box9" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=1862306076]
+transform = Transform3D(-0.4912687, 0, 0.87100816, 0, 1, 0, -0.87100816, 0, -0.4912687, -22.461143, 0.49999976, 14.660431)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box9" unique_id=551965847]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box9" unique_id=7489083]
+material_overlay = SubResource("StandardMaterial3D_272bh")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box10" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=319015116]
+transform = Transform3D(0.54496104, 0, 0.8384614, 0, 1, 0, -0.8384614, 0, 0.54496104, -18.096376, 0.49999976, -1.6929636)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box10" unique_id=845360364]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box10" unique_id=1016533670]
+material_overlay = SubResource("StandardMaterial3D_272bh")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box11" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=1481198028]
+transform = Transform3D(0.87613845, 0, 0.4820596, 0, 1, 0, -0.4820596, 0, 0.87613845, 0.7297907, 0.49999976, -9.699997)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box11" unique_id=575752501]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box11" unique_id=723293107]
+material_overlay = SubResource("StandardMaterial3D_272bh")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box12" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=545274563]
+transform = Transform3D(0.68258536, 0, 0.730806, 0, 1, 0, -0.730806, 0, 0.68258536, 3.8248386, 0.49999976, -13.788417)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box12" unique_id=1025483508]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box12" unique_id=1876562000]
+transform = Transform3D(1, 0, -1.4901161e-08, 0, 1, 0, 1.4901161e-08, 0, 1, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_272bh")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box13" type="StaticBody3D" parent="main/Layout/Boxes" unique_id=2045630117]
+transform = Transform3D(0.20562348, 0, 0.97863126, 0, 1, 0, -0.97863126, 0, 0.20562348, -14.121342, 0.49999976, -12.947845)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box13" unique_id=1803743446]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box13" unique_id=576532190]
 material_overlay = SubResource("StandardMaterial3D_272bh")
 mesh = SubResource("BoxMesh_5vw27")
 
@@ -453,8 +531,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.506077)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/StartArea" unique_id=1624561540]
 shape = SubResource("BoxShape3D_4c57u")
 
-[node name="EggStartLabel" type="Label3D" parent="main/Layout/Egg" unique_id=1514256186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22885323, 1.6083921, 10.404179)
+[node name="EggStartLabel" type="Label3D" parent="main/Layout/Egg/StartArea" unique_id=1514256186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22885323, 1.6083921, -5.101898)
 modulate = Color(1, 1, 1, 0)
 outline_modulate = Color(0, 0, 0, 0)
 text = "You mean you insist going forward?"
@@ -466,13 +544,227 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/EggArea" unique_id=535284510]
 shape = SubResource("BoxShape3D_efxa6")
 
-[node name="EggInfoLabel" type="Label3D" parent="main/Layout/Egg" unique_id=91586961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22885323, 1.6083921, 0.8172684)
+[node name="EggInfoLabel" type="Label3D" parent="main/Layout/Egg/EggArea" unique_id=91586961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22885323, 1.6083921, -2.1827316)
 modulate = Color(1, 1, 1, 0)
 outline_modulate = Color(0, 0, 0, 0)
-text = "Well, there should have been placed with something...
-However not completed. Sorry."
+text = "You have found a new challenge!"
 font_size = 48
+
+[node name="FailArea" type="Area3D" parent="main/Layout/Egg" unique_id=972948212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.739113, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/FailArea" unique_id=762534303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("WorldBoundaryShape3D_kek77")
+
+[node name="HiddenBoxes" type="Node3D" parent="main/Layout/Egg" unique_id=935686899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.739113, 0, 0)
+
+[node name="InvisibleWall" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=626514790]
+transform = Transform3D(0.9942654, 0, 0.106940866, 0, 1, 0, -0.106940866, 0, 0.9942654, 2.6782227, 0, -12.477347)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/InvisibleWall" unique_id=2034763299]
+transform = Transform3D(0.8723852, 0, -0.48881918, 0, 1, 0, 0.48881918, 0, 0.8723852, 0, 0, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="Box" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1363855734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.900337, 0.49999976, 2.6839046)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box" unique_id=654846765]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box" unique_id=1721275166]
+material_overlay = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box2" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1772413765]
+transform = Transform3D(0.79873, 0, 0.6016896, 0, 1, 0, -0.6016896, 0, 0.79873, -14.918345, 0.49999976, -5.915559)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box2" unique_id=726252453]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box2" unique_id=1398185799]
+material_overlay = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box3" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=32541510]
+transform = Transform3D(0.9614395, 0, -0.27501655, 0, 1, 0, 0.27501655, 0, 0.9614395, -5.161188, 0.49999976, -9.581072)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box3" unique_id=923642134]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box3" unique_id=73536384]
+material_overlay = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box4" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1087012537]
+transform = Transform3D(0.5647942, 0, 0.8252318, 0, 1, 0, -0.8252318, 0, 0.5647942, -1.5584316, 0.49999976, -15.739868)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box4" unique_id=1645634614]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box4" unique_id=1344162021]
+material_overlay = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box5" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=924450746]
+transform = Transform3D(-0.22989683, 0, 0.9732149, 0, 1, 0, -0.9732149, 0, -0.22989683, 7.517239, 0.49999976, -11.243692)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box5" unique_id=14433000]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box5" unique_id=1864859781]
+material_overlay = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Box6" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1782996647]
+transform = Transform3D(0.5647942, 0, 0.8252318, 0, 1, 0, -0.8252318, 0, 0.5647942, -8.761339, 0.49999976, -18.508846)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box6" unique_id=1244111624]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box6" unique_id=511516288]
+material_overlay = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_5vw27")
+
+[node name="Platform" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1562314726]
+transform = Transform3D(0.20562343, 0, 0.9786312, 0, 1, 0, -0.9786312, 0, 0.20562343, 11.041288, 1.4168739, -9.28676)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform" unique_id=776380650]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform" unique_id=2017344217]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform2" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1195726853]
+transform = Transform3D(-0.43893588, 0, 0.8985184, 0, 1, 0, -0.8985184, 0, -0.43893588, 15.638044, 2.2392802, -9.28676)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform2" unique_id=1930955877]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform2" unique_id=1976475535]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform3" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=657438023]
+transform = Transform3D(0.2400755, 0, 0.97075427, 0, 1, 0, -0.97075427, 0, 0.2400755, 19.958195, 3.033296, -7.1554976)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform3" unique_id=1637780949]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform3" unique_id=1754282772]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform4" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1520255606]
+transform = Transform3D(-0.43893588, 0, 0.8985184, 0, 1, 0, -0.8985184, 0, -0.43893588, 20.955765, 4.235701, -3.5851545)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform4" unique_id=488801669]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform4" unique_id=2037280820]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform5" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1422005077]
+transform = Transform3D(-0.83542407, 0, 0.5496062, 0, 1, 0, -0.5496062, 0, -0.83542407, 20.955765, 5.319046, -0.692667)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform5" unique_id=327446193]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform5" unique_id=364788472]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform6" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=595009937]
+transform = Transform3D(-0.43893588, 0, 0.8985184, 0, 1, 0, -0.8985184, 0, -0.43893588, 22.86129, 6.536714, 1.5653)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform6" unique_id=2022277088]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform6" unique_id=1401020400]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform7" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=657521756]
+transform = Transform3D(-0.782706, 0, 0.6223917, 0, 1, 0, -0.6223917, 0, -0.782706, 22.697798, 7.3477526, 4.9061203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform7" unique_id=2078306696]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform7" unique_id=934595445]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Platform8" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=898154145]
+transform = Transform3D(-0.9996505, 0, -0.026438683, 0, 1, 0, 0.026438683, 0, -0.9996505, 20.014553, 7.7512217, 7.116869)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform8" unique_id=1240176502]
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Platform8" unique_id=81678586]
+material_overlay = SubResource("StandardMaterial3D_4c57u")
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="Road" type="Node3D" parent="main/Layout/Egg/HiddenBoxes/Platform8" unique_id=682581715]
+transform = Transform3D(-0.99965036, 0, 0.02643868, 0, 1, 0, -0.02643868, 0, -0.99965036, 0, 0, 0)
+script = ExtResource("8_4c57u")
+
+[node name="Path3D" type="Path3D" parent="main/Layout/Egg/HiddenBoxes/Platform8/Road" unique_id=1532788064]
+transform = Transform3D(-0.99965036, 0, -0.02643868, 0, 1, 0, 0.02643868, 0, -0.99965036, 0, 0, 0)
+curve = SubResource("Curve3D_kek77")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes/Platform8/Road" unique_id=1204839727]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="main/Layout/Egg/HiddenBoxes/Platform8/Road/StaticBody3D" unique_id=497225225]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Platform8/Road/StaticBody3D" unique_id=1611285851]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="PlatformFinal" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=196730940]
+transform = Transform3D(0.8595313, 0, -0.5110831, 0, 1, 0, 0.5110831, 0, 0.8595313, 2.5334892, 26.232592, 32.115242)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal" unique_id=493195629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_5vw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal" unique_id=1287452287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_kek77")
+
+[node name="Interactive" type="Node3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal" unique_id=1459158508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.189)
+
+[node name="Area3D" type="Area3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Interactive" unique_id=509765298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Interactive/Area3D" unique_id=1856838323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5677819, 0)
+shape = SubResource("BoxShape3D_kek77")
+
+[node name="InteractiveDevice" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Interactive" unique_id=1012360623 instance=ExtResource("8_kek77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011882782, 0, -0.0017299652)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Interactive/InteractiveDevice" unique_id=441307525]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Interactive/InteractiveDevice/StaticBody3D" unique_id=1124785923]
+shape = SubResource("CylinderShape3D_4c57u")
+
+[node name="Wall" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal" unique_id=1644776527]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Wall" unique_id=1994712028]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.9597015, 0, 0.11691666)
+shape = SubResource("BoxShape3D_yaehf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Wall" unique_id=1915897445]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2.9629288, 0, 0.14176178)
+shape = SubResource("BoxShape3D_yaehf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/PlatformFinal/Wall" unique_id=1976261183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13112068, 0, 3.0049133)
+shape = SubResource("BoxShape3D_yaehf")
 
 [node name="Platforms" type="Node3D" parent="main/Layout" unique_id=915769495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.227577, 0, 0)
@@ -595,7 +887,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94260883, 0, 0.84729385)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5677819, 0)
 shape = SubResource("BoxShape3D_kek77")
 
-[node name="InteractiveDevice" parent="main/Layout/Platforms/PlatformFinal/Interactive" unique_id=1012360623 instance=ExtResource("8_kek77")]
+[node name="InteractiveDevice" parent="main/Layout/Platforms/PlatformFinal/Interactive" unique_id=584043184 instance=ExtResource("8_kek77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011882782, 0, -0.0017299652)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="main/Layout/Platforms/PlatformFinal/Interactive/InteractiveDevice" unique_id=938112560]
@@ -647,7 +939,6 @@ collision_layer = 8388608
 [connection signal="body_entered" from="main/Layout/Platforms/Platform2/AntiEgg" to="main/Layout/Egg" method="_on_anti_egg_body_entered"]
 [connection signal="body_entered" from="main/Layout/Platforms/PlatformFinal/Interactive/Area3D" to="main/Layout/FireworkStarter" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="main/Layout/Platforms/PlatformFinal/Interactive/Area3D" to="main/Layout/FireworkStarter" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="main/Layout/Platforms/ShouldResetArea" to="UI/UI" method="_on_should_reset_area_body_entered"]
-[connection signal="body_exited" from="main/Layout/Platforms/ShouldResetArea" to="UI/UI" method="_on_should_reset_area_body_exited"]
-[connection signal="body_entered" from="main/Layout/Boundry/Warning" to="UI/UI" method="_on_warning_body_entered"]
-[connection signal="body_exited" from="main/Layout/Boundry/Warning" to="UI/UI" method="_on_warning_body_exited"]
+[connection signal="body_entered" from="main/Layout/Platforms/ShouldResetArea" to="UI" method="_on_should_reset_area_body_entered"]
+[connection signal="body_exited" from="main/Layout/Platforms/ShouldResetArea" to="UI" method="_on_should_reset_area_body_exited"]
+[connection signal="body_entered" from="main/Layout/Boundry/Warning" to="UI" method="_on_warning_body_entered"]

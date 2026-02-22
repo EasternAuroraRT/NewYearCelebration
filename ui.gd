@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 
 var label_active: bool = false

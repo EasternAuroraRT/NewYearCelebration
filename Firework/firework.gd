@@ -18,7 +18,8 @@ const _explose_delay: float = 0.1
 
 @export var acceleration: float = 50
 
-signal destroyed
+signal one_shot_finished
+var is_ready: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,7 +27,6 @@ func _ready() -> void:
 	$Head.one_shot = true
 	$Tail.emitting = false
 	$Tail.one_shot = true
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var should_accelerate: bool = false
@@ -39,6 +39,7 @@ func _physics_process(_delta: float) -> void:
 		queue_explose = false
 
 func fire() -> void:
+	is_ready = false
 	$Tail.emitting = true
 	should_accelerate = true
 	await get_tree().create_timer($Tail.lifetime).timeout
@@ -48,9 +49,19 @@ func fire() -> void:
 	queue_explose = true
 
 func _enter_tree() -> void:
-	$Tail.finished.connect(_self_destroy)
+	$Tail.finished.connect(one_shot_finish)
 
-func _self_destroy() -> void:
+func reset() -> void:
+	is_ready = true
+	$Head.emitting = false
+	$Head.one_shot = true
+	$Tail.emitting = false
+	$Tail.one_shot = true
+	should_accelerate = false
+	queue_explose = false
+	position = Vector3.ZERO
+
+func one_shot_finish() -> void:
 	await get_tree().create_timer($Head.lifetime).timeout
-	destroyed.emit()
-	queue_free()
+	one_shot_finished.emit()
+	reset()
