@@ -50,3 +50,6 @@ func _on_should_reset_area_body_entered(body: Node3D) -> void:
 func _on_should_reset_area_body_exited(body: Node3D) -> void:
 	if(body.name.contains("Player")):
 		label_active = false
+
+func set_label_text(txt: String):
+	$Label.text = txt

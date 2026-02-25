@@ -10,11 +10,11 @@ enum PlayerState{
 }
 var player_state: PlayerState = PlayerState.Walking
 
-@onready var reset_transform: Transform3D = global_transform
 func _ready() -> void:
 	# Debug
-	global_transform = %Debug/DebugEggPlatform.global_transform
-	reset_transform = global_transform
+	if get_node("/root/Game").get_meta("debug"):
+		global_transform = %Debug/DebugEgg.global_transform
+		%ResetAnchor.transform = global_transform
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -44,4 +44,4 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if(event.is_action("game_reset")):
-		global_transform = reset_transform
+		global_transform = %ResetAnchor.transform
