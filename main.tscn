@@ -11,113 +11,18 @@
 [ext_resource type="Script" uid="uid://c3xsw0uygcrwm" path="res://Utilities/egg_road.gd" id="8_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dky5humlr4x07" path="res://asset/Models/InteractiveDevice.fbx" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://bwbivepllx34u" path="res://Utilities/egg_guide.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" uid="uid://da3ujlc0fhnyf" path="res://asset/Models/House2.blend" id="12_dg77c"]
 
 [sub_resource type="Animation" id="Animation_kek77"]
 resource_name = "EggInfoLabel"
 length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:outline_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_272bh"]
 resource_name = "EggStartLabel"
 length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:outline_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_5vw27"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("main/Layout/Egg/StartArea/EggStartLabel:outline_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("main/Layout/Egg/EggArea/EggInfoLabel:outline_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kek77"]
 _data = {
@@ -377,17 +282,21 @@ unique_name_in_owner = true
 [node name="DebugEgg" type="Marker3D" parent="main/Debug" unique_id=564580938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.921516, 1.2608557, 19.963547)
 
-[node name="DebugEggPlatform" type="Marker3D" parent="main/Debug" unique_id=957432825]
-transform = Transform3D(-0.741929, 0, -0.6704784, 0, 1, 0, 0.6704784, 0, -0.741929, 20.000557, 8.162651, 22.187462)
+[node name="DebugStart" type="Marker3D" parent="main/Debug" unique_id=957432825]
+transform = Transform3D(-0.741929, 0, -0.6704784, 0, 1, 0, 0.6704784, 0, -0.741929, 3.957072, 1.6399693, 4.4499116)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="main" unique_id=406247961]
 environment = SubResource("Environment_7dm0k")
+
+[node name="Firework" parent="main" unique_id=811308923 instance=ExtResource("1_ig7tw")]
+collision_layer = 8388608
 
 [node name="Floor" type="MeshInstance3D" parent="main" unique_id=997300566]
 unique_name_in_owner = true
 mesh = SubResource("PlaneMesh_1bvp3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="main/Floor" unique_id=458766559]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Floor/StaticBody3D" unique_id=2127989233]
 shape = SubResource("WorldBoundaryShape3D_lquwl")
@@ -411,7 +320,6 @@ transform = Transform3D(0.82654065, 0, -0.56287706, 0, 1, 0, 0.56287706, 0, 0.82
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box" unique_id=1329601668]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box" unique_id=987926907]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -422,7 +330,6 @@ transform = Transform3D(0.11181584, 0, -0.993729, 0, 1, 0, 0.993729, 0, 0.111815
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box2" unique_id=213666390]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box2" unique_id=66383678]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -433,7 +340,6 @@ transform = Transform3D(0.80081505, 0, -0.5989118, 0, 1, 0, 0.5989118, 0, 0.8008
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box3" unique_id=1583553765]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box3" unique_id=1975424366]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -444,7 +350,6 @@ transform = Transform3D(0.66392624, 0, -0.7477981, 0, 1, 0, 0.7477981, 0, 0.6639
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box4" unique_id=182643081]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box4" unique_id=1345610767]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -455,7 +360,6 @@ transform = Transform3D(0.93486285, 0, 0.35500908, 0, 1, 0, -0.35500908, 0, 0.93
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box5" unique_id=1215914502]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box5" unique_id=651768307]
 transform = Transform3D(1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1, 0, 0, 0)
@@ -467,7 +371,6 @@ transform = Transform3D(0.99981433, 0, 0.019267231, 0, 1, 0, -0.019267231, 0, 0.
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box6" unique_id=1788542752]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box6" unique_id=132569896]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -478,7 +381,6 @@ transform = Transform3D(0.9964047, 0, 0.08472136, 0, 1, 0, -0.08472136, 0, 0.996
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box7" unique_id=249023849]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box7" unique_id=1147270191]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -489,7 +391,6 @@ transform = Transform3D(0.54496104, 0, 0.8384614, 0, 1, 0, -0.8384614, 0, 0.5449
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box8" unique_id=1875423157]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box8" unique_id=2097751614]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -500,7 +401,6 @@ transform = Transform3D(-0.4912687, 0, 0.87100816, 0, 1, 0, -0.87100816, 0, -0.4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box9" unique_id=551965847]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box9" unique_id=7489083]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -511,7 +411,6 @@ transform = Transform3D(0.54496104, 0, 0.8384614, 0, 1, 0, -0.8384614, 0, 0.5449
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box10" unique_id=845360364]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box10" unique_id=1016533670]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -522,7 +421,6 @@ transform = Transform3D(0.87613845, 0, 0.4820596, 0, 1, 0, -0.4820596, 0, 0.8761
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box11" unique_id=575752501]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box11" unique_id=723293107]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -533,7 +431,6 @@ transform = Transform3D(0.68258536, 0, 0.730806, 0, 1, 0, -0.730806, 0, 0.682585
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box12" unique_id=1025483508]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box12" unique_id=1876562000]
 transform = Transform3D(1, 0, -1.4901161e-08, 0, 1, 0, 1.4901161e-08, 0, 1, 0, 0, 0)
@@ -545,7 +442,6 @@ transform = Transform3D(0.20562348, 0, 0.97863126, 0, 1, 0, -0.97863126, 0, 0.20
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Boxes/Box13" unique_id=1803743446]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Boxes/Box13" unique_id=576532190]
 material_overlay = SubResource("StandardMaterial3D_272bh")
@@ -725,25 +621,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.506077)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/StartArea" unique_id=1624561540]
 shape = SubResource("BoxShape3D_4c57u")
 
-[node name="EggStartLabel" type="Label3D" parent="main/Layout/Egg/StartArea" unique_id=1514256186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22885323, 1.6083921, -5.101898)
-modulate = Color(1, 1, 1, 0)
-outline_modulate = Color(0, 0, 0, 0)
-text = "You mean you insist going forward?"
-font_size = 48
-
 [node name="EggArea" type="Area3D" parent="main/Layout/Egg" unique_id=2033643432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/EggArea" unique_id=535284510]
 shape = SubResource("BoxShape3D_efxa6")
-
-[node name="EggInfoLabel" type="Label3D" parent="main/Layout/Egg/EggArea" unique_id=91586961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22885323, 1.6083921, -2.1827316)
-modulate = Color(1, 1, 1, 0)
-outline_modulate = Color(0, 0, 0, 0)
-text = "You have found a new challenge!"
-font_size = 48
 
 [node name="FailArea" type="Area3D" parent="main/Layout/Egg" unique_id=972948212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.739113, 0, 0)
@@ -767,7 +649,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9, 0.5, 2.684)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box" unique_id=654846765]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box" unique_id=1721275166]
 material_overlay = SubResource("StandardMaterial3D_kek77")
@@ -784,7 +665,6 @@ transform = Transform3D(0.79873, 0, 0.6016896, 0, 1, 0, -0.6016896, 0, 0.79873, 
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box2" unique_id=726252453]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box2" unique_id=1398185799]
 material_overlay = SubResource("StandardMaterial3D_kek77")
@@ -795,7 +675,6 @@ transform = Transform3D(0.9614395, 0, -0.27501655, 0, 1, 0, 0.27501655, 0, 0.961
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box3" unique_id=923642134]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box3" unique_id=73536384]
 material_overlay = SubResource("StandardMaterial3D_kek77")
@@ -806,7 +685,6 @@ transform = Transform3D(0.5647942, 0, 0.8252318, 0, 1, 0, -0.8252318, 0, 0.56479
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box4" unique_id=1645634614]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box4" unique_id=1344162021]
 material_overlay = SubResource("StandardMaterial3D_kek77")
@@ -817,18 +695,22 @@ transform = Transform3D(-0.22989683, 0, 0.9732149, 0, 1, 0, -0.9732149, 0, -0.22
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box5" unique_id=14433000]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box5" unique_id=1864859781]
 material_overlay = SubResource("StandardMaterial3D_kek77")
 mesh = SubResource("BoxMesh_5vw27")
+
+[node name="PlatformStart" type="Area3D" parent="main/Layout/Egg/HiddenBoxes/Box5" unique_id=1770520455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box5/PlatformStart" unique_id=673869651]
+shape = SubResource("BoxShape3D_7mycd")
 
 [node name="Box6" type="StaticBody3D" parent="main/Layout/Egg/HiddenBoxes" unique_id=1782996647 groups=["egg_box"]]
 transform = Transform3D(0.5647942, 0, 0.8252318, 0, 1, 0, -0.8252318, 0, 0.5647942, -8.761339, 0.49999976, -18.508846)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="main/Layout/Egg/HiddenBoxes/Box6" unique_id=1244111624]
 shape = SubResource("BoxShape3D_7mycd")
-debug_color = Color(0.68, 0.49028, 0.2584, 0.5529412)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="main/Layout/Egg/HiddenBoxes/Box6" unique_id=511516288]
 material_overlay = SubResource("StandardMaterial3D_kek77")
@@ -994,9 +876,8 @@ shape = SubResource("BoxShape3D_yaehf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13112068, 0, 3.0049133)
 shape = SubResource("BoxShape3D_yaehf")
 
-[node name="Firework" parent="main" unique_id=811308923 instance=ExtResource("1_ig7tw")]
-visible = false
-collision_layer = 8388608
+[node name="House2" parent="main/Layout" unique_id=175020590 instance=ExtResource("12_dg77c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.635874, -9.536743e-07, -10.939878)
 
 [connection signal="body_entered" from="main/Layout/Platforms/Platform2/AntiEgg" to="main/Layout/Egg" method="_on_anti_egg_body_entered"]
 [connection signal="body_entered" from="main/Layout/Platforms/PlatformFinal/Interactive/Area3D" to="main/Layout/FireworkStarter" method="_on_area_3d_body_entered"]
@@ -1009,4 +890,5 @@ collision_layer = 8388608
 [connection signal="body_entered" from="main/Layout/Egg/FailArea" to="main/Layout/Egg" method="_on_fail_area_body_entered"]
 [connection signal="body_exited" from="main/Layout/Egg/FailArea" to="main/Layout/Egg" method="_on_fail_area_body_exited"]
 [connection signal="body_entered" from="main/Layout/Egg/HiddenBoxes/Box/ChallengeStart" to="main/Layout/Egg" method="_on_challenge_start_body_entered"]
+[connection signal="body_entered" from="main/Layout/Egg/HiddenBoxes/Box5/PlatformStart" to="main/Layout/Egg" method="_on_platform_start_body_entered"]
 [connection signal="body_entered" from="main/Layout/Egg/HiddenBoxes/Platform8/DetectArea" to="main/Layout/Egg/HiddenBoxes/Platform8/Road" method="_on_detect_area_body_entered"]

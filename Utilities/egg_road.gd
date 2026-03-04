@@ -27,7 +27,6 @@ func _ready() -> void:
 		vertices[base_count+4] = baked_points[i+1] + leftVectors[i+1]
 		vertices[base_count+5] = baked_points[i+1] - leftVectors[i+1]
 	shape.set_faces(vertices)
-	path.bake_interval = 0.1
 	guide.visible = false
 
 var guide_start: bool = false

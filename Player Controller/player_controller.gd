@@ -13,7 +13,7 @@ var player_state: PlayerState = PlayerState.Walking
 func _ready() -> void:
 	# Debug
 	if get_node("/root/Game").get_meta("debug"):
-		global_transform = %Debug/DebugEgg.global_transform
+		global_transform = %Debug/DebugStart.global_transform
 		%ResetAnchor.transform = global_transform
 
 func _physics_process(delta: float) -> void:
@@ -43,5 +43,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if(event.is_action("game_reset")):
+	if(event.is_action_pressed("game_reset")):
 		global_transform = %ResetAnchor.transform
+	if(event.is_action_pressed("game_restart")):
+		get_tree().reload_current_scene()

@@ -12,7 +12,7 @@ var gradiant_time: float = 0.0
 func _ready() -> void:
 	$Label.self_modulate = inactive_color
 	#label_active = true
-	if(OS.get_name() != "Android" and OS.get_name() != "iOS"):
+	if(not DisplayServer.is_touchscreen_available()):
 		$Buttons.queue_free()
 
 
@@ -52,4 +52,25 @@ func _on_should_reset_area_body_exited(body: Node3D) -> void:
 		label_active = false
 
 func set_label_text(txt: String):
+	if label_active == true:
+		label_active = false
+		text_lock = true
+		await get_tree().create_timer(gradiant_duration).timeout
+		text_lock = false
 	$Label.text = txt
+
+signal text_locked
+signal text_unlocked
+var text_lock: bool = false:
+	set(value):
+		if value == true:
+			text_locked.emit()
+		else:
+			text_unlocked.emit()
+		text_lock = value
+func show(time: float):
+	if(text_lock == true):
+		await text_unlocked
+	label_active = true
+	await get_tree().create_timer(time).timeout
+	label_active = false
